@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "buildAndRun",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "nasm_program",
+                "link",
+                "execute"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "nasm_program",
+            "type": "shell",
+            "command": "nasm",
+            "args": [
+                "-f",
+                "win32",
+                "${fileBasename}",
+            ]
+        },
+        {
+            "label": "link",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${fileBasenameNoExtension}",
+                "C:/Users/iuric/Documents/4-Periodo-2023.1/CC24E - Linguagem de Montagem/Projetos/includes/driver.obj",
+                "${fileBasenameNoExtension}.obj",
+                "C:/Users/iuric/Documents/4-Periodo-2023.1/CC24E - Linguagem de Montagem/Projetos/includes/asm_io.obj"
+            ]
+        },
+        {
+            "label": "execute",
+            "type": "shell",
+            "command": "./${fileBasenameNoExtension}.exe",
+            "args": ["./${fileBasenameNoExtension}.exe"],
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}

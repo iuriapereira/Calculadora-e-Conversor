@@ -1,0 +1,10 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=00401216
+eax=00400008 ebx=0062CBEC ecx=80018020 edx=00000000 esi=800731AF edi=0062CC67
+ebp=0062CBA8 esp=0062CB88 program=C:\Users\iuric\Documents\4-Periodo-2023.1\CC24E - Linguagem de Montagem\Projeto Final\ProjetoFinal.exe, pid 858, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+0062CBA8  00401216 (0000002F, 0062CC67, 612610E0, 0062CBEC)
+0062CBC8  00401193 (00000002, 0062CBEC, 800280F0, 6100AA98)
+0062CD08  6100AAFA (00000000, 0062CD64, 61009A90, 00000000)
+End of stack trace
