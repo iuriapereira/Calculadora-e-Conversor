@@ -13,9 +13,9 @@ section .bss
     
 
 section .text
-    extern calculadora
-    extern temperatura
-    extern comprimento
+    extern calculadora ; Chama o arquivo calculadora
+    extern temperatura ; Chama o arquivo temperatura
+    extern comprimento ; Chama o arquivo comprimento
     global _asm_main	
 _asm_main:
     enter 0,0
@@ -39,9 +39,6 @@ escolhas:
     mov  eax, opcao3
     call print_string
     call print_nl
-    mov  eax, opcao4
-    call print_string
-    call print_nl
     mov  eax, opcao5
     call print_string
     call print_nl
@@ -61,8 +58,6 @@ verifica_opcoes:
     je   temperatura
     cmp  eax, 3
     je   comprimento
-    ; cmp  eax, 4
-    ; je   divisao
 
     ; Opção inválida
     mov  eax, error_msg

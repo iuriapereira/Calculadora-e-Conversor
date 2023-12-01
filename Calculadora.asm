@@ -71,7 +71,7 @@ verifica_operacao:
     cmp  eax, 4
     je   divisao
 
-    ; Operação inválida
+    ; Opção inválida
     mov  eax, error_msg
     call print_string
     call print_nl
@@ -79,71 +79,80 @@ verifica_operacao:
     jmp  operacao
 
 adicao:
-    ; Soma
+    ; Printa a mensagem que solicita a entrada do primeiro numero
     mov  eax, primNum
     call print_string
     call read_int
     mov  [num1], eax
-    
+
+    ; Printa a mensagem que solicita a entrada do segundo numero
     mov  eax, segNum
     call print_string
     call read_int
     mov  [num2], eax
     
+    ; Aplica a operação de Soma
     add  eax, [num1]
     mov  [result], eax
 
     jmp  display_result
 
 subtracao:
-    ; Subtração
+    ; Printa a mensagem que solicita a entrada do primeiro numero
     mov  eax, primNum
     call print_string
     call read_int
     mov  [num1], eax
-    
+
+    ; Printa a mensagem que solicita a entrada do segundo numero
     mov  eax, segNum
     call print_string
     call read_int
     mov  [num2], eax
     
+    ; Aplica a operação de Subtração
     sub  eax, [num1]
     mov  [result], eax
 
     jmp  display_result
 
 multiplicacao:
-    ; Multiplicação
+    ; Printa a mensagem que solicita a entrada do primeiro numero
     mov  eax, primNum
     call print_string
     call read_int
     mov  [num1], eax
-    
+
+    ; Printa a mensagem que solicita a entrada do segundo numero
     mov  eax, segNum
     call print_string
     call read_int
     mov  [num2], eax
-    
+
+    ; Aplica a operação de multiplicação
     imul eax, [num1]
     mov  [result], eax
 
     jmp  display_result
 
 divisao:
-    ; Divisão
+    ; Printa a mensagem que solicita a entrada do primeiro numero
     mov  eax, primNum
     call print_string
     call read_int
     mov  [num1], eax
     
+    ; Printa a mensagem que solicita a entrada do segundo numero
     mov  eax, segNum
     call print_string
     call read_int
     mov  [num2], eax
     
+    ; Veirifica se a segunda do usuário não é a divisão por 0
     cmp  eax, 0
     je   divisao_zero_error
     
+    ; Aplica a operação de divisão
     xor  edx, edx
     mov  eax, [num1]
     mov  ebx, [num2]
@@ -174,6 +183,6 @@ display_result:
 exit_calculator:
     popa
     mov eax, 0
-    call _asm_main
+    call _asm_main ; substitui leave por call _asm_main para que ele possa retornar para o primeiro arquivo a main
     ret
     

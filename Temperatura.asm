@@ -86,6 +86,7 @@ verifica_operacao:
     jmp  operacao
 
 CelsiusFahrenheit:
+    ; Entrada do usuário
 	mov eax, entrada1		
     call print_string		
     call read_int			
@@ -105,12 +106,15 @@ CelsiusFahrenheit:
     mov  [farSaida], eax 	
     call print_nl
 
+    ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saida1		
     call print_string		
     mov  eax, [celsius]	
 	call print_int			
     call print_nl
-	
+
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saida2		
     call print_string		
     mov  eax, [farSaida]  	
@@ -120,25 +124,29 @@ CelsiusFahrenheit:
     jmp  operacao
 
 FahrenheitCelsius:
+    ; Entrada do usuário
     mov  eax, entrada2		
     call print_string		
     call read_int			
     mov  [fahrenheit], eax	
     call print_nl	
 
+    ; Aqui faz a multiplicação por 10 porque para converter tem que fazer o calculo C=(F-32)/1,8... - Veja mais em C = (F-32)/1,8.
     mov  eax, [fahrenheit]
     sub  eax, 32
     imul eax, 10
     mov  ebx, 18
     idiv ebx
     mov  [celsiusSaida], eax
+
     ; Printando o resultado
+        ; Printa a entrada que o usuário forneceu
     mov  eax, saida2		
     call print_string		
     mov  eax, [fahrenheit]  	
 	call print_int			
     call print_nl
-	
+        ; Printa o resultado da conversão
 	mov  eax, saida1		
     call print_string		
     mov  eax, [celsiusSaida] 	
@@ -148,22 +156,26 @@ FahrenheitCelsius:
     jmp  operacao
 
 CelsiusKelvin:
+    ; Entrada do usuário
     mov  eax, entrada1		
     call print_string		
     call read_int			
     mov  [celsius], eax	
     call print_nl	
 
+    ; Opreação de conversão
     mov  eax, [celsius]
     add  eax, 273
     mov  [kelSaida], eax
     
+    ; Imprime os resultados
+        ; printa a entrada do usuário
     mov  eax, saida1		
     call print_string		
     mov  eax, [celsius]	
 	call print_int			
     call print_nl
-	
+        ; printa o valor da conversão
 	mov  eax, saida3		
     call print_string		
     mov  eax, [kelSaida]  	
@@ -173,22 +185,26 @@ CelsiusKelvin:
     jmp  operacao
 
 KelvinCelsius:
+    ; Entrada do usuário
     mov  eax, entrada3		
     call print_string		
     call read_int			
     mov  [kelvin], eax	
     call print_nl	
 
+    ; Operação de conversão
     mov  eax, [kelvin]
     sub  eax, 273
     mov  [celsiusSaida], eax
     
+    ; Saida dos resultados
+        ; Printa o valor que o usário forneceu
     mov  eax, saida3		
     call print_string		
     mov  eax, [kelvin]	
 	call print_int			
     call print_nl
-	
+        ; Printa a conversão feita
 	mov  eax, saida1		
     call print_string		
     mov  eax, [celsiusSaida]  	
@@ -200,5 +216,5 @@ KelvinCelsius:
 exit:
 	popa
 	mov	eax, 0
-	call _asm_main
+	call _asm_main ; substitui leave por call _asm_main para que ele possa retornar para o primeiro arquivo a main
 	ret

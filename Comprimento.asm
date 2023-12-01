@@ -97,6 +97,7 @@ verifica_operacao:
     jmp  operacao
 
 MetroQuilometro:
+    ; Entrada do usuário 
 	mov  eax, entradaMetro		
     call print_string		
     call read_int			
@@ -108,22 +109,26 @@ MetroQuilometro:
 	mov  ebx, 1000
     idiv ebx		
     mov  [km], eax
-    ; Saída dos resultados
+
+    ; Printa as saidas dos resultados
+        ; Aqui printa o que o valor que o usuário inseriu em m
     mov  eax, saidaMetro		
     call print_string		
     mov  eax, [m]	
 	call print_int			
     call print_nl
-	
+        ; Aqui printa o resultado da conversão que foi salvo em km
 	mov  eax, saidaQuilom		
     call print_string		
     mov  eax, [km]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
 
 QuilometroMetro:
+    ; Entrada do usuário
     mov  eax, entradaQuilo		
     call print_string		
     call read_int			
@@ -136,22 +141,27 @@ QuilometroMetro:
     mov  [m], eax
 			
     mov  [hm], eax
+
     ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saidaQuilom		
     call print_string		
     mov  eax, [km]	
 	call print_int			
     call print_nl
 	
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saidaMetro		
     call print_string		
     mov  eax, [m]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
 
 MetroCentimetro:
+    ; Entrada do usuário
     mov  eax, entradaMetro		
     call print_string		
     call read_int			
@@ -163,21 +173,24 @@ MetroCentimetro:
     imul eax, 100		
     mov  [cm], eax
     ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saidaMetro		
     call print_string		
     mov  eax, [m]	
 	call print_int			
     call print_nl
-	
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saidaCenti		
     call print_string		
     mov  eax, [cm]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
 
 CentimetroMetro:
+    ; Entrada do usuário
     mov  eax, entradaCenti		
     call print_string		
     call read_int			
@@ -189,22 +202,27 @@ CentimetroMetro:
     mov  ebx, 100
     idiv ebx		
     mov  [m], eax
+
     ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saidaCenti		
     call print_string		
     mov  eax, [cm]	
 	call print_int			
     call print_nl
-	
+
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saidaMetro		
     call print_string		
     mov  eax, [m]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
 
 CentimetroQuilometro:
+    ; Entrada do usuário
     mov  eax, entradaCenti		
     call print_string		
     call read_int			
@@ -216,22 +234,26 @@ CentimetroQuilometro:
     mov  ebx, 100000
     idiv ebx		
     mov  [km], eax
+    
     ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saidaCenti		
     call print_string		
     mov  eax, [cm]	
 	call print_int			
     call print_nl
-	
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saidaQuilom		
     call print_string		
     mov  eax, [km]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
 
 QuilometroCentimetro:
+    ; Entrada do usuário
     mov  eax, entradaQuilo		
     call print_string		
     call read_int			
@@ -242,23 +264,27 @@ QuilometroCentimetro:
 	mov	 eax, [km]	
     imul eax, 100000
     mov  [m], eax
+
     ; Saída dos resultados
+        ; Aqui printa a entrada do usuário
     mov  eax, saidaQuilom		
     call print_string		
     mov  eax, [km]	
 	call print_int			
     call print_nl
-	
+    
+        ; Aqui printa a o resultado já convertido
 	mov  eax, saidaCenti		
     call print_string		
     mov  eax, [cm]  	
 	call print_int			
     call print_nl
+
     ; Retorna para operacao
     jmp  operacao
     
 exit:
 	popa
 	mov	eax, 0
-	call _asm_main
+	call _asm_main ; substitui leave por call _asm_main para que ele possa retornar para o primeiro arquivo a main
 	ret
